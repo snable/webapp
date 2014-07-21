@@ -10,11 +10,11 @@ It have gulp config with tasks
 
 After clonning this - run:
 
-`
+```
 npm install
 bower install
 gulp
-`
+```
 
 and go to
 
