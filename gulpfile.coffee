@@ -6,6 +6,7 @@ browserify = require 'gulp-browserify'
 rename = require 'gulp-rename'
 gutil = require 'gulp-util'
 bower = require 'main-bower-files'
+spritesmith = require 'gulp.spritesmith'
 
 
 path = 
@@ -15,6 +16,8 @@ path =
 	scripts: './source/scripts/'
 	views: './source/views/'
 	bower: './bower_components/'
+	sprites: './source/sprites/*.png'
+	images: './source/images/*'
 
 
 gulp.task 'stylus', ->
@@ -27,6 +30,7 @@ gulp.task 'stylus', ->
 		}
 		.on 'error', gutil.log
 		.pipe gulp.dest path.build + 'css'
+		.pipe connect.reload()
 
 
 gulp.task 'jade', ->
@@ -35,6 +39,7 @@ gulp.task 'jade', ->
 			pretty: true
 		.on 'error', gutil.log
 		.pipe gulp.dest path.build
+		.pipe connect.reload()
 
 
 gulp.task 'scripts', ->
@@ -45,11 +50,36 @@ gulp.task 'scripts', ->
 		.on 'error', gutil.log
 		.pipe rename 'main.js'
 		.pipe gulp.dest path.build + 'js'
+		.pipe connect.reload()
+
+
+gulp.task 'sprites', ->
+	config = 
+		imgName: '../img/sprite.png'
+		cssName: '_sprite.styl'
+		engine: 'pngsmith'
+		algorithm: 'binary-tree'
+		cssFormat: 'stylus'
+		cssTemplate: './stylus-sprite.mustache'
+
+	sprite = gulp.src path.sprites
+		.pipe spritesmith config
+
+	sprite.img.pipe gulp.dest path.build + 'img'
+	sprite.css.pipe gulp.dest path.styles
+		.pipe connect.reload()
+
+
+gulp.task 'images', ->
+	gulp.src path.images
+		.pipe gulp.dest path.build + 'img'
+		.pipe connect.reload()
 
 
 gulp.task 'bower', ->
 	gulp.src bower()
 		.pipe gulp.dest path.build + 'lib'
+		.pipe connect.reload()
 
 
 gulp.task 'serve', ->
@@ -59,18 +89,16 @@ gulp.task 'serve', ->
 	}
 
 
-gulp.task 'reload', ->
-	connect.reload()
-
-
-gulp.task 'build', ['bower', 'stylus', 'jade', 'scripts']
+gulp.task 'build', ['bower', 'stylus', 'jade', 'scripts', 'sprites', 'images']
 
 
 gulp.task 'watch', ->
-	gulp.watch path.styles + '**/*.styl', ['stylus', 'reload']
-	gulp.watch path.views + '**/*.jade', ['jade', 'reload']
-	gulp.watch path.scripts + '**/*.coffee', ['scripts', 'reload']
-	gulp.watch path.bower + '*', ['bower', 'reload']
+	gulp.watch path.styles + '**/*.styl', ['stylus']
+	gulp.watch path.views + '**/*.jade', ['jade']
+	gulp.watch path.scripts + '**/*.coffee', ['scripts']
+	gulp.watch path.bower + '*', ['bower']
+	gulp.watch path.sprites, ['sprites']
+	gulp.watch path.images, ['images']
 
 
 gulp.task 'default', ['build', 'serve', 'watch']

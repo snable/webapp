@@ -5,6 +5,8 @@ It have gulp config with tasks
 * jade
 * browserify (coffee)
 * bower
+* images (simple copy)
+* sprites
 
 ## Usage
 
@@ -23,3 +25,11 @@ localhost:8080
 `
 
 in your browser
+
+
+## TODO:
+
+- [ ] Image Optimisation
+- [ ] JS Optimization
+- [ ] CSS Optimisation
+- [ ] Base64 sprites
