@@ -5,7 +5,7 @@ connect = require 'gulp-connect'
 browserify = require 'gulp-browserify'
 rename = require 'gulp-rename'
 gutil = require 'gulp-util'
-# bower = require 'main-bower-files'
+bower = require 'main-bower-files'
 spritesmith = require 'gulp.spritesmith'
 
 
@@ -47,10 +47,6 @@ gulp.task 'scripts', ->
 		.pipe browserify 
 			transform: ['coffeeify']
 			extensions: ['.coffee']
-			shim:
-				jquery:
-					path: path.bower + 'jquery/dist/jquery.min.js'
-					exports: 'jQuery'
 		.on 'error', gutil.log
 		.pipe rename 'main.js'
 		.pipe gulp.dest path.build + 'js'
@@ -80,10 +76,10 @@ gulp.task 'images', ->
 		.pipe connect.reload()
 
 
-# gulp.task 'bower', ->
-# 	gulp.src bower()
-# 		.pipe gulp.dest path.build + 'lib'
-# 		.pipe connect.reload()
+gulp.task 'bower', ->
+	gulp.src bower()
+		.pipe gulp.dest path.build + 'lib'
+		.pipe connect.reload()
 
 
 gulp.task 'serve', ->
@@ -93,14 +89,14 @@ gulp.task 'serve', ->
 	}
 
 
-gulp.task 'build', ['stylus', 'jade', 'scripts', 'sprites', 'images'] #, 'bower']
+gulp.task 'build', ['bower', 'stylus', 'jade', 'scripts', 'sprites', 'images']
 
 
 gulp.task 'watch', ->
 	gulp.watch path.styles + '**/*.styl', ['stylus']
 	gulp.watch path.views + '**/*.jade', ['jade']
 	gulp.watch path.scripts + '**/*.coffee', ['scripts']
-	# gulp.watch path.bower + '*', ['bower']
+	gulp.watch path.bower + '*', ['bower']
 	gulp.watch path.sprites, ['sprites']
 	gulp.watch path.images, ['images']
 

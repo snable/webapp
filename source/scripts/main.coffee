@@ -1,4 +1,2 @@
 dep = require './dep'
-console.log dep
-$ = require 'jquery' 
-console.log $ 
+console.log dep 
