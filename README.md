@@ -1,16 +1,15 @@
-# This is a template webapp
+# This is a webapp template
 
-It have gulp config with tasks
+There is gulp config with tasks
 * stylus
 * jade
 * browserify (coffee)
-* bower
 * images (simple copy)
 * sprites
 
 ## Usage
 
-After clonning this - run:
+After clonning this repo - run:
 
 ```
 npm install
@@ -20,9 +19,9 @@ gulp
 
 and go to
 
-`
+```
 localhost:8080
-`
+```
 
 in your browser
 
@@ -33,3 +32,29 @@ in your browser
 - [ ] JS Optimization
 - [ ] CSS Optimisation
 - [ ] Base64 sprites
+- [ ] Some automatization for bower
+
+
+## License
+
+[The MIT License (MIT)](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2014 AlexKuro
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
