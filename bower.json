@@ -1,0 +1,23 @@
+{
+  "name": "template",
+  "version": "0.0.0",
+  "authors": [
+    "alex kuro <snable@live.ru>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "reset-css": "~2.0.20110126"
+  }
+}
